@@ -17,12 +17,13 @@ int nb_chance = 0;
 string choix;
 char rejouer;
 char wait;
+int reset = 0;
 
 void hanged(){
     srand(time(NULL));
 
     while(true){
-        cout << "** JEU DU PENDU ** \n" << endl;
+        cout << "\033[35m** JEU DU PENDU ** \n\033[0m" << endl;
         cout << "Que voulez vous faire ? " << endl;
         cout << " 1 - faire une partie " << endl;
         cout << " 2 - quitter \n" << endl;
@@ -41,6 +42,11 @@ void hanged(){
             }
 
             while(true){
+                if(reset == 1){
+                    clear();
+                    reset = 0;
+                }
+
                 guess_word[lenght] = '\0';
 
                 cout << "Voici le mot : " << endl;
@@ -54,14 +60,15 @@ void hanged(){
                 }
 
                 if(search_char(guess_word, words[ind_word], lettre) == 1){
-                    cout << "\nVous avez reussi " << endl;
-                    cout << "Voici votre évolution : " << guess_word <<endl;
+                    cout << "\033[32m\nVous avez reussi\033[0m" << endl;
+                    cout << "\033[32mVoici votre évolution : " << guess_word <<"\033[0m" <<endl;
 
                     if(chercher_char(guess_word, '_') == NULL){
-                        cout << "\n Vous avez gagner !!!! \n\n";
+                        cout << "\033[32m\nVous avez gagner !!!! \n\n\033[0m";
                         cout << "Voulez vous rejouer? (o/n) : ";
                         cin >> rejouer;
                         if(rejouer == 'o'){
+                            reset = 1;
                             ind_word = initialisation(guess_word, lenght);
                             continue;
                         }else{
@@ -72,16 +79,18 @@ void hanged(){
                 if(search_char(guess_word, words[ind_word], lettre) != 1){
                     nb_chance += 1;
 
-                    cout << "Vous avez raté" << endl;
-                    cout << "Il ne vous reste plus que : " << 8 - nb_chance << " chances ";
+                    cout << "\033[33m Vous avez raté\033[0m" << endl;
+                    cout << "\033[33m Il ne vous reste plus que : " << 8 - nb_chance << " chances \033[0m";
 
                     draw_hanged(nb_chance);
 
                     if(nb_chance == 8){
-                        cout << "Vous avez perdu !!!! \n";
+                        cout << "\033[33m\nVous avez perdu !!!! \n\033[0m";
+                        cout << "\033[32m Le mot a deviner était "<< words[ind_word] <<"\033[0m" << endl;
                         cout << "Voulez vous rejouer? (o/n) : ";
                         cin >> rejouer;
                         if(rejouer == 'o'){
+                            reset = 1;
                             ind_word = initialisation(guess_word, lenght);
                             continue;
                         }else{
@@ -125,6 +134,8 @@ int search_char(char *dest, const char *chaine, char caractere){
 int initialisation(char *dest, int lenght){
     int indice = rand()%10;
 
+    nb_chance = 0;
+
     for(int i=0; i < lenght; i++){
         dest[i] = '_';
     }
@@ -134,27 +145,27 @@ int initialisation(char *dest, int lenght){
 
 void draw_hanged(int chance){
     if(chance == 1){
-        cout << "\n |\n |   \n |  \n |  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n |\n |   \n |  \n |  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 2){
-        cout << "\n ____\n |    \n |   \n |  \n |  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n +---+\n |    \n |   \n |  \n |  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 3){
-        cout << "\n ____\n |   |\n |   \n |  \n |  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n +---+\n |   |\n |   \n |  \n |  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 4){
-        cout << "\n ____\n |   |\n |   o\n |  \n |  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n +---+\n |   |\n |   o\n |  \n |  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 5){
-        cout << "\n ____\n |   |\n |   o\n |  / \\ \n |  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n +---+\n |   |\n |   o\n |  / \\ \n |  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 6){
-        cout << "\n ____\n |   |\n |   o\n |  /|\\ \n |  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n +---+\n |   |\n |   o\n |  /|\\ \n |  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 7){
-        cout << "\n ____\n |   |\n |   o\n |  /|\\ \n |  /  \n |\n | \n =====\n\n" << endl;
+        cout << "\033[33m\n +---+\n |   |\n |   o\n |  /|\\ \n |  /  \n |\n | \n =====\n\n\033[0m" << endl;
     }else
     if(chance == 8){
-        cout << "\n ____\n |   |\n |   o\n |  /|\\ \n |  / \\ \n |\n | \n =====";
+        cout << "\033[31m\n +---+\n |   |\n |   o\n |  /|\\ \n |  / \\ \n |\n | \n =====\033[0m";
     }
 }

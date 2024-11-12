@@ -2,6 +2,7 @@
 
 #include "../header/array.h"
 
+
 int longueur(const char *chaine){
     int lenght = 0;
     const char *ptr = chaine;
