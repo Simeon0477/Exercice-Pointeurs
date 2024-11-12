@@ -54,6 +54,7 @@ void hanged(){
                 }
 
                 if(search_char(guess_word, words[ind_word], lettre) == 1){
+                    clear();
                     cout << "Vous avez reussi \n";
                     cout << "Voici votre évolution : " << guess_word << "\n";
 
@@ -62,7 +63,7 @@ void hanged(){
                         cout << "Voulez vous rejouer? (o/n) : ";
                         cin >> rejouer;
                         if(rejouer == 'o'){
-                            initialisation(guess_word, ind_word, lenght);
+                            ind_word = initialisation(guess_word, lenght);
                             continue;
                         }else{
                             exit(0);
@@ -72,6 +73,7 @@ void hanged(){
                 if(search_char(guess_word, words[ind_word], lettre) != 1){
                     nb_chance += 1;
 
+                    clear();
                     cout << "Vous avez raté \n";
                     cout << "Il ne vous reste plus que : " << 8 - nb_chance << " chances \n";
 
@@ -83,7 +85,7 @@ void hanged(){
                         cout << "Voulez vous rejouer? (o/n) : ";
                         cin >> rejouer;
                         if(rejouer == 'o'){
-                            initialisation(guess_word, ind_word, lenght);
+                            ind_word = initialisation(guess_word, lenght);
                             continue;
                         }else{
                             exit(0);
@@ -124,12 +126,14 @@ int search_char(char *dest, const char *chaine, char caractere){
     return temoin;
 }
 
-void initialisation(char *dest, int indice, int lenght){
-    indice = rand()%10;
+int initialisation(char *dest, int lenght){
+    int indice = rand()%10;
 
     for(int i=0; i < lenght; i++){
         dest[i] = '_';
     }
+
+    return indice;
 }
 
 void draw_hanged(int chance){

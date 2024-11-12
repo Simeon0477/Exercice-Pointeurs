@@ -4,7 +4,7 @@
 void hanged();
 void clear();
 int search_char(char *dest, const char *chaine, char caractere);
-void initialisation(char *dest, int indice, int lenght);
+int initialisation(char *dest, int lenght);
 void draw_hanged(int chance);
 
 #endif
