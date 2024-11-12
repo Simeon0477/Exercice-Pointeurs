@@ -54,10 +54,8 @@ void hanged(){
                 }
 
                 if(search_char(guess_word, words[ind_word], lettre) == 1){
-                    cout << "\n Vous avez reussi " << endl;
+                    cout << "\nVous avez reussi " << endl;
                     cout << "Voici votre évolution : " << guess_word <<endl;
-                    cout << "Continuer ... ";
-                    cin >> wait;
 
                     if(chercher_char(guess_word, '_') == NULL){
                         cout << "\n Vous avez gagner !!!! \n\n";
@@ -78,8 +76,6 @@ void hanged(){
                     cout << "Il ne vous reste plus que : " << 8 - nb_chance << " chances ";
 
                     draw_hanged(nb_chance);
-                    cout << "Continuer ... ";
-                    cin >> wait;
 
                     if(nb_chance == 8){
                         cout << "Vous avez perdu !!!! \n";
@@ -93,7 +89,6 @@ void hanged(){
                         }
                     }
                 }
-                clear();
             }
         }else
         if(choix == "quitter"){
