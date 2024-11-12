@@ -16,15 +16,16 @@ const char *words[] = {"chien", "manger", "fleur", "voiture", "etoile", "jardin"
 int nb_chance = 0;
 string choix;
 char rejouer;
+char wait;
 
 void hanged(){
     srand(time(NULL));
 
     while(true){
-        cout << "** JEU DU PENDU ** \n\n";
-        cout << "Que voulez vous faire ? \n";
-        cout << " 1 - faire une partie \n";
-        cout << " 2 - quitter \n\n";
+        cout << "** JEU DU PENDU ** \n" << endl;
+        cout << "Que voulez vous faire ? " << endl;
+        cout << " 1 - faire une partie " << endl;
+        cout << " 2 - quitter \n" << endl;
         cout << " Votre choix -> ";
         cin >> choix;
         clear();
@@ -40,11 +41,10 @@ void hanged(){
             }
 
             while(true){
-                clear();
                 guess_word[lenght] = '\0';
 
-                cout << "Voici le mot : \n";
-                cout << guess_word << "\n";
+                cout << "Voici le mot : " << endl;
+                cout << guess_word << "\n" << endl;
 
                 cout << "Quelle lettre choississez vous? \n";
                 cout << "Joueur ->";
@@ -54,9 +54,10 @@ void hanged(){
                 }
 
                 if(search_char(guess_word, words[ind_word], lettre) == 1){
-                    clear();
-                    cout << "Vous avez reussi \n";
-                    cout << "Voici votre évolution : " << guess_word << "\n";
+                    cout << "\n Vous avez reussi " << endl;
+                    cout << "Voici votre évolution : " << guess_word <<endl;
+                    cout << "Continuer ... ";
+                    cin >> wait;
 
                     if(chercher_char(guess_word, '_') == NULL){
                         cout << "\n Vous avez gagner !!!! \n\n";
@@ -73,15 +74,15 @@ void hanged(){
                 if(search_char(guess_word, words[ind_word], lettre) != 1){
                     nb_chance += 1;
 
-                    clear();
-                    cout << "Vous avez raté \n";
-                    cout << "Il ne vous reste plus que : " << 8 - nb_chance << " chances \n";
+                    cout << "Vous avez raté" << endl;
+                    cout << "Il ne vous reste plus que : " << 8 - nb_chance << " chances ";
 
                     draw_hanged(nb_chance);
+                    cout << "Continuer ... ";
+                    cin >> wait;
 
                     if(nb_chance == 8){
-                        cout << "\n Vous avez perdu !!!! \n\n";
-                        draw_hanged(nb_chance);
+                        cout << "Vous avez perdu !!!! \n";
                         cout << "Voulez vous rejouer? (o/n) : ";
                         cin >> rejouer;
                         if(rejouer == 'o'){
@@ -138,83 +139,27 @@ int initialisation(char *dest, int lenght){
 
 void draw_hanged(int chance){
     if(chance == 1){
-        cout << "\n\n"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n |\n |   \n |  \n |  \n |\n | \n =====\n\n" << endl;
     }else
     if(chance == 2){
-        cout << "\n ____\n"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n ____\n |    \n |   \n |  \n |  \n |\n | \n =====\n\n" << endl;
     }else
     if(chance == 3){
-        cout << "\n ____\n"
-             << " |   |"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n ____\n |   |\n |   \n |  \n |  \n |\n | \n =====\n\n" << endl;
     }else
     if(chance == 4){
-        cout << "\n ____\n"
-             << " |   |"
-             << " |   o"
-             << " |"
-             << " |"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n ____\n |   |\n |   o\n |  \n |  \n |\n | \n =====\n\n" << endl;
     }else
     if(chance == 5){
-        cout << "\n ____\n"
-             << " |   |"
-             << " |   o"
-             << " |  / \\"
-             << " |"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n ____\n |   |\n |   o\n |  / \\ \n |  \n |\n | \n =====\n\n" << endl;
     }else
     if(chance == 6){
-        cout << "\n ____\n"
-             << " |   |"
-             << " |   o"
-             << " |  /|\\"
-             << " |"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n ____\n |   |\n |   o\n |  /|\\ \n |  \n |\n | \n =====\n\n" << endl;
     }else
     if(chance == 7){
-        cout << "\n ____\n"
-             << " |   |"
-             << " |   o"
-             << " |  /|\\"
-             << " |  /"
-             << " |"
-             << " |"
-             << "_____\n\n";
+        cout << "\n ____\n |   |\n |   o\n |  /|\\ \n |  /  \n |\n | \n =====\n\n" << endl;
     }else
-    if(chance == 2){
-        cout << "\n ____\n"
-             << " |   |"
-             << " |   o"
-             << " |  /|\\"
-             << " |  / \\"
-             << " |"
-             << " |"
-             << "_____\n\n";
+    if(chance == 8){
+        cout << "\n ____\n |   |\n |   o\n |  /|\\ \n |  / \\ \n |\n | \n =====";
     }
 }
