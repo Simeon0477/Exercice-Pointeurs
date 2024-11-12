@@ -79,6 +79,7 @@ int main(int argc, char** args){
             if(compare(chaine.c_str(), chaine2.c_str()) < 0){
                 cout << chaine <<" est inferieure à " << chaine2 << "\n ";
             }
+            break;
         }
         case 5 :{
             clear();
